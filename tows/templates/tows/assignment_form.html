@@ -1,0 +1,46 @@
+{% extends "tows/base_generic.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+<h1>ADD ASSIGNMENT</h1>
+    <form action="{% url 'tows:add-assignment' %}" method="POST">
+        {% csrf_token %}
+        <p><label>Status: </label>
+        <select class="form-control" name="status">
+            <option value="O">On Route</option>
+            <option value="A">Available</option>
+        </select></p>
+        <p>
+        <div class="form-group">
+            <label>Start Time</label>
+            <input type="datetime-local" class="form-control"  name="start_time">
+        </div>
+        </p>
+        <p>
+            <label>Assign Pilot: </label>
+            <select name="pilot" class="form-control">
+                {% for pilot in pilots %}
+                <option value="{{ pilot.id }}">{{ pilot }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label>Assign Crane: </label>
+            <select class="form-control" name="crane">
+                {% for crane in cranes %}
+                <option value="{{ crane.id }}">{{ crane }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit" class="btn btn-primary">Add Assignment</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

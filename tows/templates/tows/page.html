@@ -1,0 +1,16 @@
+{% extends "tows/base_generic.html" %}
+
+{% block content %}
+<div id="body">
+  <h1 style="color: #1C1C1C; font-family: 'Ubuntu', sans-serif; font-size: 50px;">APITEC CRANES</h1>
+  <p style="font-family: 'Ubuntu', sans-serif;">Welcome to my website developed by <em>APITEC</em>!</p>
+  <h2 style="font-family: 'Ubuntu', sans-serif;">Dynamic content</h2>
+  <p style="font-family: 'Ubuntu', sans-serif;">The Company has the following record counts:</p>
+  <ul>
+    <li><strong style="font-family: 'Ubuntu', sans-serif;">Cranes:</strong> {{ num_cranes }}</li>
+    <li><strong style="font-family: 'Ubuntu', sans-serif;">Pilots:</strong> {{ num_pilots }}</li>
+    <li><strong style="font-family: 'Ubuntu', sans-serif;">Assignments:</strong> {{ num_assignments }}</li>
+    <li><strong style="font-family: 'Ubuntu', sans-serif;">Assignments Available:</strong> {{ num_assignments_available }}</li>
+  </ul>
+</div>
+{% endblock %}

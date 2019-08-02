@@ -1,0 +1,50 @@
+{% extends "tows/base_generic.html" %}
+
+{% block content %}
+<div id="body">
+    <h1>Assignments</h1>
+        <table>
+            <tr>
+                <th>STATUS</th>
+                <th>PILOT ASSIGNED</th>
+                <th>CRANE ASSIGNED</th>
+                <th>START TIME</th>
+                <th>OPTIONS</th>
+            </tr>
+            {% for av in available %}
+            <tr>
+                <td>{{ av.status }}</td>
+                <td>{{ av.pilot_assigned }}</td>
+                <td>{{ av.crane_assigned }}</td>
+                <td>{{ av.start_time }}</td>
+                <td>
+                    <a href="{% url 'tows:delete-available' av.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+                    <a href=""><button type="button" class="btn btn-outline-warning">Edit</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+{% if available.has_other_pages %}
+  <ul class="pagination">
+    {% if available.has_previous %}
+      <li><a href="?page={{ available.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in available.paginator.page_range %}
+      {% if available.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if available.has_next %}
+      <li><a href="?page={{ available.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
+{% endblock %}

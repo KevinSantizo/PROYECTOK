@@ -1,0 +1,27 @@
+{% extends "users/base_user.html" %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN USER</title>
+</head>
+<body>
+<div id="body">
+    <h1>Login</h1>
+    <form action="{% url 'tows:page' %}" method="POST">
+        {% csrf_token %}
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Enter Email" required>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+    </div>
+       <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "tows/base_generic.html" %}
+
+{% block content %}
+<div id="body">
+    <h1>Assignments</h1>
+    {% if object_list %}
+
+        <table>
+            <tr>
+                <th>STATUS</th>
+                <th>PILOT ASSIGNED</th>
+                <th>CRANE ASSIGNED</th>
+                <th>START TIME</th>
+                <th>OPTIONS</th>
+            </tr>
+            {% for assignment in object_list %}
+            <tr>
+                <td>{{ assignment.status }}</td>
+                <td>{{ assignment.pilot_assigned }}</td>
+                <td>{{ assignment.crane_assigned }}</td>
+                <td>{{ assignment.start_time }}</td>
+                <td><a href="{% url 'tows:delete' assignment.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+{% block pagination %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-info">Previous</button></a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-info">Next</button></a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+  {% endblock %}
+        {% else %}
+
+        <p>There are no Assignments.</p>
+</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Catalogue</title>
+</head>
+<body>
+    <h1>Catalogue</h1>
+        {% for crane in  %}
+        <p>{{ book.name }} --- {{ book.author }} (<a href="{% url 'books:edit' book.id%}">Edit</a>)(<a href="{% url 'books:delete' book.id %}">Delete</a>)</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
