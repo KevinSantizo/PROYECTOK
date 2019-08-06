@@ -14,6 +14,7 @@ urlpatterns = [
     path('delete/<int:assignment_id>/', views.delete_assignment, name='delete'),
     path('show-available/', views.show_available, name='show-available'),
     path('delete-available/<int:available_id>/', views.delete_available_assignment, name='delete-available'),
-
+    path('edit/<int:assignment_id>/', views.edit_assignment_form, name='edit'),
+    path('save/<int:assignment_id>/', views.confirm_edit_assignment_form, name='save'),
 ]
 

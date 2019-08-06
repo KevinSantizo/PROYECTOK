@@ -1,0 +1,46 @@
+{% extends "tows/base_generic.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="body">
+<h1>UPDATE ASSIGNMENT</h1>
+    <form action="{% url 'tows:save' assignment.id %}" method="POST">
+        {% csrf_token %}
+        <p><label>Status: </label>
+        <select class="form-control" name="status">
+            <option value="O" {% if assignment.status == 'O' %}selected="selected"{% endif %}>On Route</option>
+            <option value="A" {% if assignment.status == 'A' %}selected="selected"{% endif %}>Available</option>
+        </select></p>
+        <p>
+        <div class="form-group">
+            <label>Start Time</label>
+            <input type="datetime-local" class="form-control"  name="start_time" value="{{ assignment.start_time }}">
+        </div>
+        </p>
+        <p>
+            <label>Assign Pilot: </label>
+            <select name="pilot" class="form-control">
+                {% for pilot in pilots %}
+                <option value="{{ pilot.id }}" {% if assignment.pilots.pilot_assigned == '{{ pilot.id }}' %}selected="selected"{% endif %}>{{ pilot }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label>Assign Crane: </label>
+            <select class="form-control" name="crane">
+                {% for crane in cranes %}
+                <option value="{{ crane.id }}" {% if assignment.cranes.crane_assigned == '{{ crane.id  }}' %}selected="selected"{% endif %}>{{ crane }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

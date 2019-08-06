@@ -19,7 +19,7 @@
                 <td>{{ av.start_time }}</td>
                 <td>
                     <a href="{% url 'tows:delete-available' av.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
-                    <a href=""><button type="button" class="btn btn-outline-warning">Edit</button></a>
+                    <a href="{% url 'tows:edit' av.id %}"><button type="button" class="btn btn-outline-warning">Edit</button></a>
                 </td>
             </tr>
             {% endfor %}

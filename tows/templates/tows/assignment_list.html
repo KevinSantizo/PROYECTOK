@@ -15,7 +15,7 @@
             </tr>
             {% for assignment in object_list %}
             <tr>
-                <td>{{ assignment.status }}</td>
+                <td><a href="">{{ assignment.status }}</a></td>
                 <td>{{ assignment.pilot_assigned }}</td>
                 <td>{{ assignment.crane_assigned }}</td>
                 <td>{{ assignment.start_time }}</td>

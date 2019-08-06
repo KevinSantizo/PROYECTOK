@@ -121,3 +121,28 @@ def delete_available_assignment(request, available_id):
     deleted_available_assignment.delete()
 
     return HttpResponseRedirect(reverse('tows:show-available'))
+
+
+def edit_assignment_form(request, assignment_id):
+    template = 'tows/edit_assignment_form.html'
+    context = {
+        'assignment': Assignment.objects.get(id=assignment_id),
+        'pilots': Pilot.objects.all(),
+        'cranes': Crane.objects.all(),
+    }
+    return render(request, template, context)
+
+
+def confirm_edit_assignment_form(request, assignment_id):
+    if request.method == 'POST':
+        post_pilot = Pilot.objects.get(pk=request.POST['pilot'])
+        post_crane = Crane.objects.get(pk=request.POST['crane'])
+        updated_assignment = Assignment.objects.get(id=assignment_id)
+        updated_assignment.status = request.POST['status']
+        updated_assignment.start_time = request.POST['start_time']
+        updated_assignment.pilot_assigned = post_pilot,
+        updated_assignment.crane_assigned = post_crane,
+        updated_assignment.save()
+
+        return HttpResponseRedirect(reverse('tows:show-available'))
+    return HttpResponse('No se puede guardar')
